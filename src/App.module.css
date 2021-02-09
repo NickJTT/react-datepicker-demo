@@ -1,0 +1,16 @@
+div.app {
+  text-align: center;
+  font-family: Arial;
+}
+
+div.app * {
+  margin: 4px 0;
+}
+
+div.app label {
+  cursor: pointer;
+}
+
+div.app label input {
+  display: none;
+}

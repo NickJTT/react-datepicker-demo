@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import style from './App.module.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { FaCalendar } from 'react-icons/fa';
 
-function App() {
+export default function App() {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [formattedDate, setFormattedDate] = useState('');
+
+  const setDate = date => {
+    setSelectedDate(date);
+    setFormattedDate(`${ ('0' + date.getDate()).slice(-2) }.${ ('0' + (date.getMonth() + 1)).slice(-2) }.${ date.getFullYear() }`);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className = { style.app }>
+      <p>{ formattedDate }</p>
+      <label>
+        <FaCalendar/>
+        <DatePicker popperPlacement = 'center' showPopperArrow = { false } selected = { selectedDate } onChange = { setDate } minDate = { new Date() }/>
+      </label>
     </div>
   );
 }
-
-export default App;
